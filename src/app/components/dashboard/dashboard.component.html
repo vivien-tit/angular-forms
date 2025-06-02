@@ -1,0 +1,34 @@
+<section class="recent-docs">
+        <h3>
+          <i>⏱️</i> Documents Récents
+          <button class="refresh-btn" (click)="refreshDocs()"><i>🔄</i></button>
+        </h3>
+
+        <div class="docs-grid">
+          <div *ngFor="let doc of recentDocuments" class="doc-card" (click)="openDocument(doc)">
+            <div class="doc-header">
+              <span class="doc-title">{{ doc.title }}</span>
+              <span class="doc-type">{{ doc.type }}</span>
+            </div>
+            <div class="doc-date">{{ doc.date | date:'mediumDate' }}</div>
+            <div class="doc-actions">
+              <button (click)="regenerateDoc($event, doc.id)"><i>🔄</i></button>
+              <button (click)="downloadDoc($event, doc)"><i>⬇️</i></button>
+              <button (click)="shareDoc($event, doc)"><i>↗️</i></button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Quick Templates -->
+      <section class="quick-templates">
+        <h3><i>🚀</i> Modèles Rapides</h3>
+        <div class="templates-grid">
+          <div *ngFor="let template of quickTemplates" 
+               class="template-card" 
+               (click)="useTemplate(template)">
+            <i>{{ getTemplateIcon(template.type) }}</i>
+            <span>{{ template.name }}</span>
+          </div>
+        </div>
+      </section>

@@ -1,0 +1,48 @@
+<div id="afriland-register-container">
+  <div class="register-branding">
+    <h1 class="bank-slogan">The pact with Success</h1>
+  </div>
+
+  <form class="register-card" (submit)="onSubmit()" [formGroup]="registerFormGroup">
+    <h2>CRÉER UN COMPTE</h2>
+
+    <mat-error *ngIf="errorMessage" class="server-error">
+      {{ errorMessage }}
+    </mat-error>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput formControlName="username" placeholder="admin">
+      <mat-error *ngIf="registerFormGroup.get('username')?.invalid">
+        Champ requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="••••••••">
+      <mat-error *ngIf="registerFormGroup.get('password')?.invalid">
+        Champ requis
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Rôle</mat-label>
+      <mat-select formControlName="role">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="user">Utilisateur</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button 
+            class="register-btn"
+            type="submit"
+            [disabled]="registerFormGroup.invalid">
+      S'INSCRIRE
+    </button>
+
+    <div class="register-links">
+      <a routerLink="/login">Vous avez déjà un compte ? Se connecter</a>
+    </div>
+  </form>
+</div>

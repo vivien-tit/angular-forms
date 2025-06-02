@@ -1,0 +1,44 @@
+<div id="afriland-login-container">
+  <div class="login-branding">
+    <!--img src="assets/imgs/logo_afriland-removebg-preview.png" alt="Afriland Bank" class="bank-logo"-->
+    <h1 class="bank-slogan">The pact with Success</h1>
+  </div>
+
+  <form class="login-card" (submit)="onSubmit()" [formGroup]="loginFormGroup">
+    <h2>CONNEXION</h2>
+    <mat-error *ngIf="errorMessage" class="server-error">
+      Identifiants incorrects
+    </mat-error>
+    <mat-form-field appearance="outline">
+      <mat-label>Nom d'utilisateur</mat-label>
+      <input matInput formControlName="username" placeholder="admin">
+      <mat-error *ngIf="loginFormGroup.get('username')?.invalid">
+        Champ requis
+      </mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Mot de passe</mat-label>
+      <input matInput type="password" formControlName="password" placeholder="••••••••">
+      <mat-error *ngIf="loginFormGroup.get('password')?.invalid">
+        Champ requis
+      </mat-error>
+    </mat-form-field>
+    
+    <button mat-raised-button 
+            class="login-btn"
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="loginFormGroup.invalid">
+      SE CONNECTER
+    </button>
+    
+    <div class="login-links">
+      <a href="#">Mot de passe oublié ?</a>
+      <div class="separator">OU</div>
+      <a routerLink="/register">Créer un compte</a>
+    </div>
+
+    
+  </form>
+</div>

@@ -1,0 +1,30 @@
+<div class="container mt-4">
+  <h2>Créez vos documents professionnels en un clic</h2>
+  <p class="text-muted text-center mb-4">Sélectionnez le type de document à générer</p>
+  
+  <div class="d-flex flex-wrap gap-3 mt-4">
+    <button mat-raised-button color="primary" (click)="ouvrirFormulaire('Facture')">
+      <mat-icon>receipt</mat-icon>
+      Facture rapide
+    </button>
+    
+    <button mat-raised-button color="accent" (click)="ouvrirFormulaire('Contrat')">
+      <mat-icon>description</mat-icon>
+      Contrat rapide
+    </button>
+    
+    <button mat-raised-button color="warn" (click)="ouvrirFormulaire('Lettre')">
+      <mat-icon>mail</mat-icon>
+      Lettre rapide
+    </button>
+    
+    <button mat-raised-button color="primary" (click)="ouvrirFormulaire('Devis')" class="highlight">
+      <mat-icon>request_quote</mat-icon>
+      Devis rapide
+    </button>
+  </div>
+  
+  <div class="mt-4 text-center">
+    <small class="text-muted">Documents conformes aux normes bancaires en vigueur</small>
+  </div>
+</div>

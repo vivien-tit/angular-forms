@@ -1,0 +1,43 @@
+<div class="template-gallery">
+  <h2>Choisissez un modèle</h2>
+  <div class="template-grid">
+    <!-- Modèle 1 -->
+    <div class="template-card" (click)="openTemplateForm('contrat')">
+      <div class="template-preview contrat-template"></div>
+      <p>Contrat Standard</p>
+    </div>
+
+    <!-- Modèle 2 -->
+    <div class="template-card" (click)="openTemplateForm('releve')">
+      <div class="template-preview releve-template"></div>
+      <p>Relevé Bancaire</p>
+    </div>
+
+    <!-- Modèle 3 -->
+    <div class="template-card" (click)="openTemplateForm('attestation')">
+      <div class="template-preview attestation-template"></div>
+      <p>attestation de travail</p>
+    </div>
+
+    <!-- Modèle 4 -->
+    <div class="template-card" (click)="openTemplateForm('attestation')">
+      <div class="template-preview attestation-template"></div>
+      <p>attestation de stage</p>
+    </div>
+    
+    <!-- Modèle 5 -->
+    <div class="template-card" (click)="openTemplateForm('lettre')">
+      <div class="template-preview lettre-template"></div>
+      <p>lettre de stage</p>
+  </div> 
+
+  <!-- Modèle 6 -->
+  <div class="template-card" (click)="openTemplateForm('recette')">
+    <div class="template-preview recette-template"></div>
+    <p>Document de recette</p>
+  </div>
+
+</div>
+
+<!-- Si vous utilisez un modal pour le formulaire -->
+<app-convention-form *ngIf="showForm" [templateType]="selectedTemplate" (close)="showForm = false"></app-convention-form>

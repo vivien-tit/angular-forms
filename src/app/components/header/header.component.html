@@ -1,0 +1,45 @@
+<header class="app-header">
+  <!-- Logo (à gauche) -->
+  <div class="logo-container" routerLink="/accueil">
+    <img src="assets/images/logo.png" alt="Logo" class="logo">
+    <span class="app-name">DocGenius</span>
+  </div>
+
+  <!-- Barre de recherche (centrée) -->
+  <div class="search-container" *ngIf="showSearchBar">
+    <mat-form-field appearance="outline">
+      <input matInput placeholder="Rechercher..." [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  </div>
+
+  <!-- Section utilisateur (à droite) -->
+  <div class="user-section">
+    <!-- Bouton Déconnexion -->
+    <button mat-icon-button (click)="logout()" matTooltip="Déconnexion">
+      <mat-icon>logout</mat-icon>
+    </button>
+
+    <!-- Avatar utilisateur -->
+    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+      <mat-icon class="user-avatar">account_circle</mat-icon>
+    </button>
+    
+    <!-- Menu utilisateur -->
+    <mat-menu #userMenu="matMenu">
+      <button mat-menu-item (click)="openProfile()">
+        <mat-icon>account_box</mat-icon>
+        <span>Mon profil</span>
+      </button>
+      <button mat-menu-item (click)="openSettings()">
+        <mat-icon>settings</mat-icon>
+        <span>Paramètres</span>
+      </button>
+      <mat-divider></mat-divider>
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>exit_to_app</mat-icon>
+        <span>Déconnexion</span>
+      </button>
+    </mat-menu>
+  </div>
+</header>

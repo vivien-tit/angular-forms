@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="p-4 border rounded">
+  <div class="row">
+    <div class="col-md-6" *ngFor="let field of form.controls | keyvalue">
+      <div class="form-group mb-3">
+        <label [for]="field.key">{{ field.key }}</label>
+        <input type="text" class="form-control" [formControlName]="field.key" [id]="field.key">
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary mt-3" type="submit">Générer le document</button>
+</form>

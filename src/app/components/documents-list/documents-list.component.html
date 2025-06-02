@@ -1,0 +1,34 @@
+<!-- src/app/documents/document-list/document-list.component.html -->
+<div class="container mt-4">
+  <h2>Mes documents</h2>
+
+  <button class="btn btn-primary mb-3">Nouveau document</button>
+
+  <table class="table table-striped" *ngIf="documents.length > 0">
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Type</th>
+        <th>Date de création</th>
+        <th>Dernière modification</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let doc of documents">
+        <td>{{ doc.titre }}</td>
+        <td>{{ doc.type }}</td>
+        <td>{{ doc.dateCreation | date: 'short' }}</td>
+        <td>{{ doc.derniereModif | date: 'short' }}</td>
+        <td>
+          <button class="btn btn-sm btn-warning me-2">Modifier</button>
+          <button class="btn btn-sm btn-danger" (click)="deleteDocument(doc.id)">Supprimer</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="documents.length === 0" class="alert alert-info">
+    Aucun document trouvé.
+  </div>
+</div>

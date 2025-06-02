@@ -1,0 +1,14 @@
+<div class="test-form-container">
+  <form [formGroup]="testForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="Nom" formControlName="nom">
+    <input type="text" placeholder="Prénom" formControlName="prenom">
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <h3>Liste des personnes</h3>
+  <ul>
+    <li *ngFor="let p of personnes">
+      {{ p.nom }} {{ p.prenom }}
+    </li>
+  </ul>
+</div>

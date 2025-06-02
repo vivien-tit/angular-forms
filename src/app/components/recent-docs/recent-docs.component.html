@@ -1,0 +1,44 @@
+<div class="recent-docs-container">
+  <h3 class="section-title">
+    <mat-icon>schedule</mat-icon>
+    Documents Récents
+    <button mat-icon-button (click)="refresh()" matTooltip="Rafraîchir">
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </h3>
+
+  <div class="docs-grid">
+    <!-- Carte document -->
+    <mat-card *ngFor="let doc of documents" class="doc-card" (click)="openDocument(doc)">
+      <mat-card-header>
+        <mat-card-title>{{ doc.titre }}</mat-card-title>
+        <mat-card-subtitle>
+          <span class="doc-type">{{ doc.type }}</span>
+          • {{ doc.dateCreation | date:'mediumDate' }}
+        </mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        <div class="doc-preview">{{ getPreview(doc.contenu) }}</div>
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-icon-button (click)="regenerate($event, doc.id)" matTooltip="Régénérer">
+          <mat-icon>autorenew</mat-icon>
+        </button>
+        <button mat-icon-button (click)="download($event, doc)" matTooltip="Télécharger">
+          <mat-icon>cloud_download</mat-icon>
+        </button>
+        <button mat-icon-button (click)="share($event, doc)" matTooltip="Partager">
+          <mat-icon>share</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- État vide -->
+    <div *ngIf="documents?.length === 0" class="empty-state">
+      <mat-icon>folder_open</mat-icon>
+      <p>Aucun document récent</p>
+    </div>
+  </div>
+</div>

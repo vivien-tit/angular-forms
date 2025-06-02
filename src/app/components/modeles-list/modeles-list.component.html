@@ -1,0 +1,8 @@
+<div class="modeles-container">
+  <h2>Modèles disponibles</h2>
+  <div class="modele-card" *ngFor="let modele of modeles" (click)="ouvrirFormulaire(modele)">
+    <img *ngIf="modele.apercuImg" src="{{ modele.apercuImg }}" alt="aperçu">
+    <h3>{{ modele.nom }}</h3>
+    <p>Catégorie : {{ modele.categorie }}</p>
+  </div>
+</div>

@@ -1,0 +1,71 @@
+<div class="app-container">
+  <!-- Header -->
+  <header class="app-header">
+    <div class="logo-container" (click)="goToHome()">
+      <img src="assets/images/logo.png" alt="Logo" class="logo">
+      <span class="app-name">DocGenius</span>
+    </div>
+
+    <div class="search-container">
+      <div class="search-box">
+        <input type="text" placeholder="Rechercher..." 
+               [(ngModel)]="searchQuery" (keyup.enter)="onSearch()">
+        <i class="search-icon">🔍</i>
+      </div>
+    </div>
+
+    <div class="user-section">
+      <button class="icon-btn" (click)="logout()" title="Déconnexion">
+        <i>🚪</i>
+      </button>
+      <div class="user-menu">
+        <button class="user-avatar" (click)="toggleUserMenu()" title="profil">
+          <i>👤</i>
+        </button>
+        <div class="dropdown-menu" *ngIf="showUserMenu">
+          <button (click)="openProfile()"><i>👤</i> Mon profil</button>
+          <button (click)="openSettings()"><i>⚙️</i> Paramètres</button>
+          <div class="divider"></div>
+          <button (click)="logout()"><i>🚪</i> Déconnexion</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar + Content -->
+  <div class="main-content">
+    <!-- Sidebar -->
+    <nav class="app-sidebar">
+      <div class="menu-section">
+        <button [class.active]="currentSection === 'home'" (click)="navigateTo('dash')">
+          <i>🏠</i> Accueil
+        </button>
+
+        <div class="menu-group">
+          <button (click)="toggleDocumentsMenu()">
+            <i>📄</i> Documents <i>{{ showDocumentsMenu ? '▼' : '▶' }}</i>
+          </button>
+          <div class="submenu" *ngIf="showDocumentsMenu">
+            <button (click)="createNewDocument()"><i>➕</i> Créer</button>
+            <button (click)="navigateTo('my-documents')"><i>📋</i> Mes documents</button>
+          </div>
+        </div>
+
+        <button (click)="navigateTo('templates')"><i>📁</i> Modèles</button>
+        <button (click)="navigateTo('history')"><i>🕒</i> Historique</button>
+        <button (click)="navigateTo('favorites')"><i>⭐</i> Favoris</button>
+      </div>
+
+      <div class="menu-section">
+        <button (click)="navigateTo('settings')"><i>⚙️</i> Paramètres</button>
+        <button (click)="showHelp()"><i>❓</i> Aide</button>
+      </div>
+    </nav>
+
+    <!-- Content Area -->
+    <main class="content-area">
+      <!-- Recent Documents -->
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

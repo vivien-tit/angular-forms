@@ -1,0 +1,67 @@
+/* styles.css */
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 64px;
+  background-color: #3f51b5; /* Couleur primaire Material */
+  color: white;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.logo-container .logo {
+  height: 40px;
+  margin-right: 10px;
+}
+.logo-container .app-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+/* Barre de recherche */
+.search-container {
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+.search-container .mat-form-field {
+  width: 100%;
+}
+.search-container .mat-form-field-outline {
+  background-color: rgba(255,255,255,0.9);
+  border-radius: 4px;
+}
+
+/* Section utilisateur */
+.user-section {
+  display: flex;
+  align-items: center;
+}
+.user-section .user-avatar {
+  font-size: 36px;
+  color: white;
+}
+.user-section button {
+  margin-left: 10px;
+}
+
+/* Adaptations pour Bootstrap */
+.mat-icon-button {
+  background: transparent;
+  border: none;
+  padding: 8px;
+}
+.mat-menu-item {
+  display: flex;
+  align-items: center;
+}
+.mat-menu-item mat-icon {
+  margin-right: 8px;
+}

@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #sidenav mode="side" opened class="app-sidenav">
+    <!-- Section principale -->
+    <div class="menu-items">
+      <!-- Accueil -->
+      <button mat-button routerLink="/accueil" routerLinkActive="active">
+        <mat-icon>home</mat-icon>
+        <span>Accueil</span>
+      </button>
+
+      <!-- Documents -->
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-icon>description</mat-icon>
+            <span>Documents</span>
+          </mat-expansion-panel-header>
+          <button mat-button routerLink="/documents/nouveau" routerLinkActive="active">
+            <mat-icon>add</mat-icon>
+            <span>Créer</span>
+          </button>
+          <button mat-button routerLink="/documents/mes-documents" routerLinkActive="active">
+            <mat-icon>list</mat-icon>
+            <span>Mes documents</span>
+          </button>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- Modèles -->
+      <button mat-button routerLink="/modeles" routerLinkActive="active">
+        <mat-icon>dashboard</mat-icon>
+        <span>Modèles</span>
+      </button>
+
+      <!-- Historique -->
+      <button mat-button routerLink="/historique" routerLinkActive="active">
+        <mat-icon>history</mat-icon>
+        <span>Historique</span>
+      </button>
+
+      <!-- Favoris -->
+      <button mat-button routerLink="/favoris" routerLinkActive="active">
+        <mat-icon>star</mat-icon>
+        <span>Favoris</span>
+      </button>
+    </div>
+
+    <!-- Section secondaire -->
+    <div class="secondary-actions">
+      <!-- Paramètres -->
+      <button mat-button routerLink="/parametres" routerLinkActive="active">
+        <mat-icon>settings</mat-icon>
+        <span>Paramètres</span>
+      </button>
+
+      <!-- Aide -->
+      <button mat-button (click)="openHelp()">
+        <mat-icon>help</mat-icon>
+        <span>Aide</span>
+      </button>
+    </div>
+  </mat-sidenav>
+
+  <!-- Contenu principal -->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
