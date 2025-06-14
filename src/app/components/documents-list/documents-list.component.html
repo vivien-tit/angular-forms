@@ -1,34 +1,139 @@
-<!-- src/app/documents/document-list/document-list.component.html -->
-<div class="container mt-4">
-  <h2>Mes documents</h2>
+<h5 class="mt-4 text-afriland">Informations personnelles</h5>
+<div class="card p-3 mb-4">
+  <div class="row">
+<div class="container mt-3">
 
-  <button class="btn btn-primary mb-3">Nouveau document</button>
+  <!-- ✅ Affichage du formulaire si isEditMode est true -->
+  <div *ngIf="isEditMode">
+    <h4>{{ isEditMode ? 'Modifier le document' : 'Créer un nouveau document' }}</h4>
 
-  <table class="table table-striped" *ngIf="documents.length > 0">
-    <thead>
-      <tr>
-        <th>Titre</th>
-        <th>Type</th>
-        <th>Date de création</th>
-        <th>Dernière modification</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let doc of documents">
-        <td>{{ doc.titre }}</td>
-        <td>{{ doc.type }}</td>
-        <td>{{ doc.dateCreation | date: 'short' }}</td>
-        <td>{{ doc.derniereModif | date: 'short' }}</td>
-        <td>
-          <button class="btn btn-sm btn-warning me-2">Modifier</button>
-          <button class="btn btn-sm btn-danger" (click)="deleteDocument(doc.id)">Supprimer</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Titre</label>
+          <input class="form-control" formControlName="titre">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Type</label>
+          <input class="form-control" formControlName="type">
+        </div>
+      </div>
 
-  <div *ngIf="documents.length === 0" class="alert alert-info">
-    Aucun document trouvé.
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Utilisateur ID</label>
+          <input class="form-control" formControlName="utilisateurId">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Modèle ID</label>
+          <input class="form-control" formControlName="modeleId">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label>Référence</label>
+          <input class="form-control" formControlName="reference" required>
+        </div>
+        <div class="col-md-6 mb-3">
+          <label>Date de saisie</label>
+          <input type="date" class="form-control" formControlName="dateSaisie">
+        </div>
+      </div>
+
+      <!-- Infos personnelles -->
+      <h5 class="mt-4">Informations personnelles</h5>
+      <div class="row">
+        <div class="col-md-4 mb-3"><label>Nom</label><input class="form-control" formControlName="nom"></div>
+        <div class="col-md-4 mb-3"><label>Fonction</label><input class="form-control" formControlName="fonction"></div>
+        <div class="col-md-4 mb-3"><label>Unité</label><input class="form-control" formControlName="unite"></div>
+        <div class="col-md-4 mb-3"><label>Matricule</label><input class="form-control" formControlName="matricule"></div>
+      </div>
+
+      <!-- Infos client -->
+      <h5 class="mt-4">Client</h5>
+      <div class="row">
+        <div class="col-md-6 mb-3"><label>Nom Client</label><input class="form-control" formControlName="NomClient"></div>
+        <div class="col-md-6 mb-3"><label>Téléphone</label><input class="form-control" formControlName="Telephone"></div>
+        <div class="col-md-6 mb-3"><label>Adresse</label><input class="form-control" formControlName="Adresse"></div>
+        <div class="col-md-6 mb-3"><label>Email</label><input class="form-control" formControlName="Email" type="email"></div>
+      </div>
+
+      <!-- Organisme -->
+      <h5 class="mt-4">Organisme Emprunteur</h5>
+      <div class="row">
+        <div class="col-md-6 mb-3"><label>Nom Organisme</label><input class="form-control" formControlName="NomOrganisme"></div>
+        <div class="col-md-6 mb-3"><label>Adresse Emprunteur</label><input class="form-control" formControlName="AdresseEmprunteur"></div>
+        <div class="col-md-6 mb-3"><label>Téléphone Emprunteur</label><input class="form-control" formControlName="TelephoneEmprunteur"></div>
+        <div class="col-md-6 mb-3"><label>Email Emprunteur</label><input class="form-control" formControlName="EmailEmprunteur" type="email"></div>
+      </div>
+
+      <!-- Détails prêt -->
+      <h5 class="mt-4">Détails du prêt</h5>
+      <div class="row">
+        <div class="col-md-4 mb-3"><label>Usage</label><input class="form-control" formControlName="usagePret"></div>
+        <div class="col-md-4 mb-3"><label>Montant</label><input type="number" class="form-control" formControlName="montantPret"></div>
+        <div class="col-md-4 mb-3"><label>Taux d'intérêt (%)</label><input type="number" class="form-control" formControlName="tauxInteret" step="0.01"></div>
+        <div class="col-md-4 mb-3"><label>Durée (mois)</label><input type="number" class="form-control" formControlName="dureePret"></div>
+        <div class="col-md-4 mb-3"><label>Montant échéance</label><input type="number" class="form-control" formControlName="montantEcheance"></div>
+        <div class="col-md-4 mb-3"><label>Nombre échéances</label><input type="number" class="form-control" formControlName="nombreEcheance"></div>
+      </div>
+
+      <!-- Autres -->
+      <h5 class="mt-4">Autres</h5>
+      <div class="row">
+        <div class="col-md-6 mb-3"><label>Ville congé</label><input class="form-control" formControlName="villeconge"></div>
+        <div class="col-md-6 mb-3"><label>Ville permutation</label><input class="form-control" formControlName="villeperm"></div>
+        <div class="col-md-6 mb-3"><label>Ville</label><input class="form-control" formControlName="ville"></div>
+        <div class="col-md-6 mb-3"><label>Date</label><input type="date" class="form-control" formControlName="date"></div>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-primary" type="submit" [disabled]="form.invalid">
+          {{ isEditMode ? 'Mettre à jour' : 'Créer' }}
+        </button>
+        <button type="button" class="btn btn-secondary ms-2" (click)="cancelEdit()">Annuler</button>
+      </div>
+      <div class="text-center mt-2">
+        <button class="btn btn-warning" type="button" (click)="onRegenerate()">Régénérer</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ✅ Affichage du tableau uniquement si on n'est pas en édition -->
+  <div *ngIf="!isEditMode">
+    <h4>Liste des documents</h4>
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Type</th>
+          <th>Date Création</th>
+          <th>Dernière Modification</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let doc of documents">
+          <td>{{ doc.titre }}</td>
+          <td>{{ doc.type }}</td>
+          <td>{{ doc.dateCreation | date: 'short' }}</td>
+          <td>{{ doc.derniereModif | date: 'short' }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary me-2" (click)="onEdit(doc)">Modifier</button>
+            <button class="btn btn-sm btn-danger" (click)="onDelete(doc.id)">Supprimer</button>
+            <button class="btn btn-sm btn-warning" (click)="onRegenerateFromJson(doc)">Régénérer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="text-end mt-3">
+      <button class="btn btn-success" (click)="onCreate()">Créer un document</button>
+    </div>
+  </div>
+
+</div>
+
   </div>
 </div>
