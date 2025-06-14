@@ -1,0 +1,72 @@
+:root {
+  --afriland-red: #a90533;
+  --afriland-light-red: #fbeaec;
+  --afriland-gray: #f5f5f5;
+  --afriland-dark: #2d2d2d;
+  --afriland-white: #ffffff;
+}
+
+/* Formulaire principal */
+.container {
+  background-color: var(--afriland-white);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Titres */
+h2 {
+  color: var(--afriland-red);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+/* Tableau d'historique de documents */
+.table {
+  background-color: var(--afriland-white);
+  border: 1px solid #dee2e6;
+}
+
+.table thead {
+  background-color: var(--afriland-red);
+  color: white;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: var(--afriland-light-red);
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: var(--afriland-gray);
+}
+
+.table tbody tr:hover {
+  background-color: #f0dfe2;
+}
+
+.table td, .table th {
+  vertical-align: middle;
+}
+
+/* Section visuelle */
+.card {
+  background-color: #fff;
+  border-radius: 16px;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Responsive corrections */
+@media (max-width: 768px) {
+  .row > div[class*="col-"] {
+    margin-bottom: 1rem;
+  }
+
+  .text-end {
+    text-align: center !important;
+  }
+
+  .text-center {
+    text-align: center;
+  }
+}
